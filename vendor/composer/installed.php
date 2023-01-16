@@ -1,0 +1,41 @@
+<?php return array(
+    'root' => array(
+        'name' => 'gmaccario/simple-mvc-php-framework',
+        'pretty_version' => 'dev-master',
+        'version' => 'dev-master',
+        'reference' => 'd4e8d91f0a3aaabac61c195116609f55f493dae3',
+        'type' => 'library',
+        'install_path' => __DIR__ . '/../../',
+        'aliases' => array(),
+        'dev' => true,
+    ),
+    'versions' => array(
+        'doctrine/collections' => array(
+            'pretty_version' => '2.1.2',
+            'version' => '2.1.2.0',
+            'reference' => 'db8cda536a034337f7dd63febecc713d4957f9ee',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../doctrine/collections',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'doctrine/deprecations' => array(
+            'pretty_version' => 'v1.0.0',
+            'version' => '1.0.0.0',
+            'reference' => '0e2a4f1f8cdfc7a92ec3b01c9334898c806b30de',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../doctrine/deprecations',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'gmaccario/simple-mvc-php-framework' => array(
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
+            'reference' => 'd4e8d91f0a3aaabac61c195116609f55f493dae3',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../../',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+    ),
+);

@@ -1,0 +1,20 @@
+{
+ "name": "gmaccario/simple-mvc-php-framework",
+ "description": "Simple MVC PHP framework: a demonstration of how to create a simple MVC framework in PHP",
+ "autoload": {
+     "psr-4": {
+         "App\\": "app/",
+        "Config\\": "config/"
+     },
+     "classmap": [
+         "app/","config/"
+     ]
+ },
+ "require": {
+  "doctrine/collections": "^2.1",
+   "ext-pdo": "*"
+ },
+  "config": {
+    "platform-check": false
+  }
+}
