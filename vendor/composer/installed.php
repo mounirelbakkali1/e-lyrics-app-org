@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
-        'name' => 'gmaccario/simple-mvc-php-framework',
+        'name' => 'mounirelbakkali1/e-lyrics-app-org',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => 'd4e8d91f0a3aaabac61c195116609f55f493dae3',
+        'reference' => '38ce98782cfff82db9969a145ff9475e0f487b35',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -28,10 +28,10 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
-        'gmaccario/simple-mvc-php-framework' => array(
+        'mounirelbakkali1/e-lyrics-app-org' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'd4e8d91f0a3aaabac61c195116609f55f493dae3',
+            'reference' => '38ce98782cfff82db9969a145ff9475e0f487b35',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

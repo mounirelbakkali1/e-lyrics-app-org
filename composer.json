@@ -1,7 +1,13 @@
 {
- "name": "gmaccario/simple-mvc-php-framework",
- "description": "Simple MVC PHP framework: a demonstration of how to create a simple MVC framework in PHP",
- "autoload": {
+ "name": "mounirelbakkali1/e-lyrics-app-org",
+  "description": "application web ou vous allez trouver des paroles des musics les plus populaire de musiciens qui vous aimez",
+  "authors": [
+    {
+      "name": "Mounir EL Bakkali",
+      "email": "bakkalimounir@gmail.com"
+    }
+  ],
+  "autoload": {
      "psr-4": {
          "App\\": "app/",
         "Config\\": "config/"
