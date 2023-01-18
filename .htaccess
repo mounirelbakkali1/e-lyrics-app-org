@@ -1,13 +1,31 @@
 <IfModule mod_rewrite.c>
 RewriteEngine On
 
-# Stop processing if already in the /public directory
-RewriteRule ^public/ - [L]
 
-# Static resources if they exist
+#
+#
+## Stop processing if already in the /public directory
+#RewriteRule ^public/ - [L]
+#
+## Static resources if they exist
+## -f : signifie  un fichier régulier , Traite chaîne_de_test comme un chemin et vérifie s'il existe ou pas, et s'il s'agit d'un fichier régulier.
+## !() En utilisant "!" avant un modèle de regex, cela permet de dire à mod_rewrite de ne pas appliquer la règle pour les URLs qui correspondent
+## à ce modèle. C'est utile pour exclure certaines URLs de l'application de règles de réécriture.
+#
+#RewriteCond %{DOCUMENT_ROOT}/public/$1 -f
+#RewriteRule (.+) %{DOCUMENT_ROOT}/public/$1 [L]
+#
+## Route all other requests
+#
+## RewriteRule : 'pattern' 'substitution' [flags] (optinal)
+## The "L" flag tells mod_rewrite to stop processing rules after this one, so it doesn't try to apply any other rules to the rewritten URL.
+##RewriteRule (.*) public/index.php?route=$1 [L,QSA]
+#RewriteRule (.*) %{DOCUMENT_ROOT}/public/index.php?route=$1 [L,QSA]
+#
+#
+RewriteEngine On
 RewriteCond %{DOCUMENT_ROOT}/public/$1 -f
 RewriteRule (.+) public/$1 [L]
+RewriteRule (.*) %{DOCUMENT_ROOT}/public/ [QSA,L]
 
-# Route all other requests
-RewriteRule (.*) public/index.php?route=$1 [L,QSA]
 </IfModule>

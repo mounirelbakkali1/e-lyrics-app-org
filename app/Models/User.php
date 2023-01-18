@@ -2,73 +2,13 @@
 
 namespace App\Models;
 
-class User
+use const DEFAULT_ADMIN_IMAGE;
+
+class User extends Person
 {
- protected $nom;
- protected $prenom;
- protected $username;
- protected $password;
- protected $image;
-
-
-    public function getNom()
+    public function __construct()
     {
-        return $this->nom;
+        $this->setImage(DEFAULT_ADMIN_IMAGE);
+        $this->setRole(rule::USER);
     }
-
-
-    public function setNom($nom): void
-    {
-        $this->nom = $nom;
-    }
-
-
-    public function getPrenom()
-    {
-        return $this->prenom;
-    }
-
-
-    public function setPrenom($prenom): void
-    {
-        $this->prenom = $prenom;
-    }
-
-
-    public function getUsername()
-    {
-        return $this->username;
-    }
-
-
-    public function setUsername($username): void
-    {
-        $this->username = $username;
-    }
-
-
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-
-    public function setPassword($password): void
-    {
-        $this->password = $password;
-    }
-
-    public function getImage()
-    {
-        return $this->image;
-    }
-
-
-    public function setImage($image): void
-    {
-        $this->image = $image;
-    }
-
-
-
 }

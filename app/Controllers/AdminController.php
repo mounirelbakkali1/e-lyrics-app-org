@@ -4,11 +4,13 @@ namespace App\Controllers;
 
 
 use App\Models\Admin;
-use App\Models\Lyric;
+use App\Models\Song;
 use App\Models\repositories\AdminRepositoryImpl;
-use App\Models\User;
+use App\Models\Person;
+use http\Client\Curl\User;
 use function count;
 use function password_verify;
+use function var_dump;
 
 class AdminController
 {
@@ -18,56 +20,56 @@ class AdminController
     {
         $this->repository = new AdminRepositoryImpl();
     }
-
-    public function addUser(User $user): void
+    /*
+     *       Manage Users
+     * */
+    public function addUser(Person $user): void
     {
-        $this->repository->addUser($user);
+        $this->repository->add($user);
     }
+
+    public function UpdateUserPrivilege(Person $user): void
+    {
+        $this->repository->Update($user);
+    }
+
+    public function deleteUser(int $id): void
+    {
+        $this->repository->delete($id);
+    }
+
     public function findUser($id)
     {
         return $this->repository->findById($id);
     }
 
-    public function UpdateUserPrivilege(User $user): void
-    {
-        $this->repository->UpdateUser($user);
-    }
-
-    public function deleteUser(int $id): void
-    {
-        $this->repository->deleteUser($id);
-    }
 
     public function getAllUsers(): array
     {
-       return $this->repository->findAllUsers();
+       return $this->repository->findAll();
     }
 
     public function countAllUsers(): int
     {
-        return $this->repository->countAllUsers();
+        return $this->repository->countAll();
     }
-    public function addLyric(Lyric $lyric){
-        $this->repository->addLyric($lyric);
-    }
-    public function updateLyric(Lyric $lyric){
-        $this->repository->updateLyric($lyric);
-    }
-    public function deleteLyric(Lyric $lyric){
-        $this->repository->deleteLyricById($lyric);
-    }
-    public function authenticate($username , $password , $crfToken){
-        // call repo to verify credentials
-        $resultSet = $this->repository->authenticate($username,$password,$crfToken);
+
+
+
+    public static function authenticate($user, $crfToken){
         // generate feedback depend
         $feedBack=array();
-        $feedBack['authenticat']=false;
-        if(count($resultSet)<=0)$feedBack['message']="username is not part of our records";
-        else{
-            if(!password_verify($password,$resultSet[0]['password'])) $feedBack['message']="incorrect password";
-            else {
-                $feedBack['message']="authentication succeful";
-                $feedBack['authenticat']=true;
+        $feedBack['authenticat']= false;
+        if($user instanceof  Person){
+            $resultSet =(new self)->repository->authenticate($user);
+            if(count($resultSet)<=0)$feedBack['message']="username is not part of our records";
+            else{
+                if(!password_verify($user->getPassword(),$resultSet[0]['password'])) $feedBack['message']="incorrect password";
+                else {
+                    // TODO: Here need to add srfToken verification
+                    $feedBack['message']="authentication succeful";
+                    $feedBack['authenticat']=true;
+                }
             }
         }
         return $feedBack;

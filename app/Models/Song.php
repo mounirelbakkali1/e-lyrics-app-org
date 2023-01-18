@@ -2,14 +2,16 @@
 
 namespace App\Models;
 
-class Lyric
+use const DEFAULT_SONG_IMAGE;
+
+class Song
 {
     private $title;
     private $artist;
     private $album;
-    private $parole;
+    private $lyric;
     private $anne_de_creation;
-    private $song_image;
+    private $song_image=DEFAULT_SONG_IMAGE;
 
     public function getTitle()
     {
@@ -48,14 +50,14 @@ class Lyric
 
 
 
-    public function getParole()
+    public function getLyric()
     {
-        return $this->parole;
+        return $this->lyric;
     }
 
-    public function setParole($parole): void
+    public function setLyric($lyric): void
     {
-        $this->parole = $parole;
+        $this->lyric = $lyric;
     }
 
     public function getAnneDeCreation()

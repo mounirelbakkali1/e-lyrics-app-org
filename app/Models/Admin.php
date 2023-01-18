@@ -2,20 +2,13 @@
 
 namespace App\Models;
 
-class Admin extends User
+use const DEFAULT_ADMIN_IMAGE;
+
+class Admin extends Person
 {
-    private $custom;
-
-    public function getCustom()
+    public function __construct()
     {
-        return $this->custom;
+        $this->setImage(DEFAULT_ADMIN_IMAGE);
+        $this->setRole(rule::ADMIN);
     }
-
-
-    public function setCustom($custom): void
-    {
-        $this->custom = $custom;
-    }
-
-
 }

@@ -4,67 +4,69 @@ namespace App\Models\repositories;
 
 
 use App\Models\Admin;
-use App\Models\Artist;
-use App\Models\User;
+use App\Models\Person;
 use Config\DBConnection;
-use function count;
-use function password_verify;
-use function var_dump;
+use function password_hash;
+use const PASSWORD_DEFAULT;
 
 /**
- * @extends UserRepository<Admin>
+ * @extends Repository<Admin>
  */
-class AdminRepositoryImpl extends LyricsRepositoryImpl implements UserRepository
+class AdminRepositoryImpl extends SongRepositoryImpl implements Repository
 {
     private $connexion;
 
     public function __construct()
     {
-        $db= new DBConnection();
-        $this->connexion = $db->connect();
+        $this->connexion = DBConnection::connect();
     }
 
-    public function addUser(User $user): void
+    public function add($admin): int
     {
-        $statement =$this->connexion->prepare("INSERT INTO admins VALUES (null,?,?,?,?) ; ");
-        $statement->execute(array($user->getNom(),$user->getPrenom(),$user->getUsername(),$user->getPassword()));
+        $lastIdInserted;
+        $this->connexion->beginTransaction();
+        $statement =$this->connexion->prepare("INSERT INTO users VALUES (null,?,?,?,?,?,?) ; ");
+        $statement->execute(array($admin->getNom(),$admin->getPrenom(),$admin->getUsername(),password_hash($admin->getPassword(),PASSWORD_DEFAULT),$admin->getImage(),$admin->getRole()->val()));
+        $lastIdInserted= $this->connexion->lastInsertId();
+        $this->connexion->commit();
+        return $lastIdInserted;
     }
 
-    public function UpdateUser(User $user): void
+    public function Update($admin): void
     {
     }
 
-    public function deleteUser(int $id): void
+    public function delete($id): void
     {
-        $statement = $this->connexion->prepare("DELETE from admins where id=?");
+        $statement = $this->connexion->prepare("DELETE from users where id=?");
         $statement->execute(array($id));
     }
-    public function findById(int $id): User
+    public function findById($id)
     {
-        $statement = $this->connexion->prepare("SELECT * from admins where id=?");
+        $statement = $this->connexion->prepare("SELECT * from users where id=?");
         $statement->execute(array($id));
-        $statement->setFetchMode(\PDO::FETCH_CLASS, Admin::class, array());
+        $statement->setFetchMode(\PDO::FETCH_CLASS, Person::class, array());
         $resultSet = $statement->fetch();
 //        var_dump($resultSet);
         return  $resultSet;
     }
 
-    public function findAllUsers(): array
+    public function findAll(): array
     {
-        $statement = $this->connexion->prepare("SELECT * from admins");
+        $statement = $this->connexion->prepare("SELECT * from users");
         $statement->execute();
         return $statement->fetchAll();
     }
 
-    public function countAllUsers(): int
+    public function countAll(): int
     {
-        $statement = $this->connexion->prepare("SELECT COUNT(*) from admins");
+        $statement = $this->connexion->prepare("SELECT COUNT(*) from users");
         $statement->execute();
         return $statement->fetch();
     }
-    public function authenticate($username , $password , $crfToken){
-        $statement = $this->connexion->prepare("select * from admins where username = ? ");
-        if($statement->execute(array($username))){
+    public function authenticate($person){
+        $statement = $this->connexion->prepare("select * from users where username = ? ");
+        if($statement->execute(array($person->getUsername()))){
             $resultSet=$statement->fetchAll();
             return $resultSet;
         }

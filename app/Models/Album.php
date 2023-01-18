@@ -8,18 +8,39 @@ use const DEFAULT_ALBUM_IMAGE;
 
 class Album
 {
+    private $id = null;
     private $title;
-    private $lyrics;
+    private static ArrayCollection $albums ; // for caching purpose
     private $image;
 
-    public function __toString(): string
+
+    public function __construct()
     {
-       $_songs = "";
-       foreach ($this->lyrics as $song){
-           $_songs.=$song->getTitle()."<br>";
-       }
-       return $_songs;
+        $this->image=DEFAULT_ALBUM_IMAGE;
+        //$this->addToAlbumsCollection();
     }
+
+
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
+
+
+
+
 
     public function getTitle()
     {
@@ -32,28 +53,14 @@ class Album
     }
 
 
-    public function __construct()
-    {
-        $this->lyrics= new ArrayCollection();
-        $this->image=DEFAULT_ALBUM_IMAGE;
-        
-    }
 
-    public function addSong($song)
+    public function  addToAlbumsCollection() :void
     {
-        $this->lyrics[] = $song;
+        self::$albums->set($this->getTitle(),array("title"=>$this->getTitle(),"image"=>$this->getImage(),"lyrics"=>new ArrayCollection()));
     }
-
-    public function getLyrics()
-    {
-        return $this->lyrics;
+    public function addLyricToAlbum(Album $album, Song $lyric){
+       self::$albums->get($album->getTitle())->add($lyric->getTitle(),$lyric);
     }
-
-    public function setLyrics($lyrics): void
-    {
-        $this->lyrics = $lyrics;
-    }
-
 
     public function getImage()
     {
@@ -64,6 +71,7 @@ class Album
     {
         $this->image = $image;
     }
+
 
 
 

@@ -19,4 +19,5 @@ return array(
     'App\\Models\\repositories\\UserRepository' => $baseDir . '/app/Models/repositories/UserRepository.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'Config\\DBConnection' => $baseDir . '/config/DBConnection.php',
+    'Normalizer' => $vendorDir . '/symfony/polyfill-intl-normalizer/Resources/stubs/Normalizer.php',
 );

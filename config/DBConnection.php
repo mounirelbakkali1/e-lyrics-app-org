@@ -6,7 +6,8 @@ use PDOException;
 
 class DBConnection
 {
-    public function connect(){
+
+    public static function connect(){
         $dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";";
         $options = [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
@@ -17,6 +18,24 @@ class DBConnection
         } catch (PDOException $e) {
             die("Database connection failed: " . $e->getMessage());
         }
+//        $pdo->beginTransaction();
+//        // if attr 3ameer
+//
+//
+//
+//
+//        //else
+//                // insert artist
+//
+//                // get last id (fk)
+//                $pdo->lastInsertId();
+//                // insert lyric
+//
+//
+//                $pdo->commit();
+//
+//
+//                $pdo->rollBack();
         return $pdo;
     }
 
