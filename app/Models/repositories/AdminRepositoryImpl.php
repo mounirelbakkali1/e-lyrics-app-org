@@ -6,6 +6,7 @@ namespace App\Models\repositories;
 use App\Models\Admin;
 use App\Models\Person;
 use Config\DBConnection;
+use PDOException;
 use function password_hash;
 use const PASSWORD_DEFAULT;
 
@@ -25,10 +26,14 @@ class AdminRepositoryImpl extends SongRepositoryImpl implements Repository
     {
         $lastIdInserted;
         $this->connexion->beginTransaction();
-        $statement =$this->connexion->prepare("INSERT INTO users VALUES (null,?,?,?,?,?,?) ; ");
-        $statement->execute(array($admin->getNom(),$admin->getPrenom(),$admin->getUsername(),password_hash($admin->getPassword(),PASSWORD_DEFAULT),$admin->getImage(),$admin->getRole()->val()));
-        $lastIdInserted= $this->connexion->lastInsertId();
-        $this->connexion->commit();
+        try{
+            $statement =$this->connexion->prepare("INSERT INTO users VALUES (null,?,?,?,?,?,?) ; ");
+            $statement->execute(array($admin->getNom(),$admin->getPrenom(),$admin->getUsername(),password_hash($admin->getPassword(),PASSWORD_DEFAULT),$admin->getImage(),$admin->getRole()->val()));
+            $lastIdInserted= $this->connexion->lastInsertId();
+            $this->connexion->commit();
+        }catch (PDOException $PDOException){
+            $this->connexion->rollBack();
+        }
         return $lastIdInserted;
     }
 

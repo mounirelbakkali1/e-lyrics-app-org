@@ -7,7 +7,11 @@ use App\Models\repositories\ArtistRepositoryImpl;
 use App\Models\Song;
 use App\Models\repositories\AdminRepositoryImpl;
 use App\Models\repositories\SongRepositoryImpl;
+use Config\DBConnection;
+use Exception;
+use PDOException;
 use function var_dump;
+use const APP_ROOT;
 
 class SongController
 {
@@ -30,13 +34,12 @@ class SongController
     public function addSong(Song $song){
         $album_id;
         $artist_id;
-        if(empty($song->getAlbum()->getId())){
-            $album_id=$this->albumRepository->add($song->getAlbum());     // persist album first
+        if (empty($song->getAlbum()->getId())) {
+            $album_id = $this->albumRepository->add($song->getAlbum());     // persist album first
             $song->getAlbum()->setId($album_id);                         //  set the id of persisted album to the song
-            //die("err");
         }
-        if(empty($song->getArtist()->getId())){
-            $artist_id= $this->artistRepository->add($song->getArtist());
+        if (empty($song->getArtist()->getId())) {
+            $artist_id = $this->artistRepository->add($song->getArtist());
             $song->getArtist()->setId($artist_id);
         }
         $this->songRepository->add($song);
@@ -46,6 +49,13 @@ class SongController
     }
     public function deleteSong(Song $song){
         $this->songRepository->delete($song);
+    }
+
+    public function getSongById($id){
+        //var_dump($id['id']);
+        $song=$this->songRepository->findById($id['id']);
+        var_dump($song);
+        include_once APP_ROOT.'/public/index.php';
     }
 
     public function getAllSongs(): array

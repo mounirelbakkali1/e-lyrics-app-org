@@ -19,7 +19,9 @@
  "require": {
   "doctrine/collections": "^2.1",
    "ext-pdo": "*",
-  "mrsuh/php-generics": "^1.2"
+  "mrsuh/php-generics": "^1.2",
+  "symfony/routing": "^6.2",
+  "symfony/http-foundation": "^6.2"
  },
   "config": {
     "platform-check": false,

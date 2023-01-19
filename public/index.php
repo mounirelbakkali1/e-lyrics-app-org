@@ -3,22 +3,24 @@
 require_once '../vendor/autoload.php';
 // Configration loading
 require_once '../config/config.php';
-// load router
-require_once APP_ROOT.'../routes/router.php';
+
+// Routes
+require_once '../app/Router.php';
 
 /*
  *
  *
- * Routing
+ *               Routing
  *
  *
  */
 
+//if(!isset($_SESSION['login'])) {
+//    echo "<script>location.href='login';</script>";
+//    exit();
+//
+//}
 
-get('/','public/home.php');
-//get('/','public/home.php');
-
-any('/404','views/404.php');
 
 //
 //

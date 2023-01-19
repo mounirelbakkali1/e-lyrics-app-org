@@ -5,7 +5,9 @@ namespace App\Models\repositories;
 use App\Models\Admin;
 use App\Models\Album;
 use Config\DBConnection;
+use Exception;
 use http\Exception\InvalidArgumentException;
+use PDOException;
 use function call_user_func;
 use const U_ILLEGAL_ARGUMENT_ERROR;
 
@@ -24,11 +26,15 @@ class AlbumRepositoryImpl implements Repository
         $this->connexion->beginTransaction();
         $lastIdInserted;
         if($album instanceof Album){
-            $statement =$this->connexion->prepare("INSERT INTO albums VALUES (null,?,?) ; ");
-            $statement->execute(array($album->getTitle(),$album->getImage()));
-            $lastIdInserted= $this->connexion->lastInsertId();
+            try{
+                $statement =$this->connexion->prepare("INSERT INTO albums VALUES (null,?,?) ; ");
+                $statement->execute(array($album->getTitle(),$album->getImage()));
+                $lastIdInserted= $this->connexion->lastInsertId();
+                $this->connexion->commit();
+            }catch (PDOException $e){
+                $this->connexion->rollBack();
+            }
         }else throw new \InvalidArgumentException("Opps ! obejct passed is not an instance of Album.");
-        $this->connexion->commit();
         return $lastIdInserted;
 
     }

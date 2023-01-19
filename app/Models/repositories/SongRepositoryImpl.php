@@ -41,7 +41,9 @@ class SongRepositoryImpl implements Repository
 
     public function findById($args)
     {
-        // TODO: Implement findById() method.
+        $statement =$this->connection->prepare("Select * from songs where id = ?");
+        $statement->execute(array($args));
+        return $statement->fetchAll();
     }
 
     public function findAll(): array
