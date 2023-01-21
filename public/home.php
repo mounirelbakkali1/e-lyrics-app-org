@@ -35,20 +35,6 @@
         <!-- Sidebar -->
         <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse">
             <div class="position-sticky">
-<!--                <div class="list-group list-group-flush mx-3 mt-4">-->
-<!--                    <a href="#" class="list-group-item list-group-item-action py-3 ripple active" aria-current="true">-->
-<!--                        <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Main dashboard</span>-->
-<!--                    </a>-->
-<!--                    <a href="#" class="list-group-item list-group-item-action py-3 mt-3 ripple ">-->
-<!--                        <i class="fas fa-chart-area fa-fw me-3"></i><span>Songs</span>-->
-<!--                    </a>-->
-<!--                    <a href="#" class="list-group-item list-group-item-action py-3 mt-3 ripple ">-->
-<!--                        <i class="fas fa-chart-area fa-fw me-3"></i><span>Artists</span>-->
-<!--                    </a>-->
-<!--                    <a href="#" class="list-group-item list-group-item-action py-3 mt-3 ripple ">-->
-<!--                        <i class="fas fa-chart-area fa-fw me-3"></i><span>Albums</span>-->
-<!--                    </a>-->
-<!--                </div>-->
                 <div class="list-group p-2" id="list-tab" role="tablist">
                     <a class="list-group-item list-group-item-action active  py-3 mt-3 bg-transparent ripple" id="list-home-list" data-bs-toggle="list" href="#dashboard" role="tab" aria-controls="dashboard">
                         <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Main dashboard</span>
@@ -191,10 +177,10 @@
             </section>
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="dashboard" role="tabpanel" aria-labelledby="list-home-list">
-                    A
+                    <?php include_once "../views/music.php"?>
                 </div>
                 <div class="tab-pane fade" id="music" role="tabpanel" aria-labelledby="list-profile-list">
-                    <?php include_once "../views/music.php"?>
+
                 </div>
                 <div class="tab-pane fade" id="artists" role="tabpanel" aria-labelledby="list-messages-list">C</div>
                 <div class="tab-pane fade" id="albums" role="tabpanel" aria-labelledby="list-settings-list">D</div>

@@ -39,12 +39,10 @@ class AlbumRepositoryImpl implements Repository
 
     }
 
-    public function Update($album): void
+    public function Update($args): void
     {
-        if ($album instanceof Album) {
-
-        }else throw new \InvalidArgumentException("Opps ! obejct passed to update is not an instance of Album.");
-
+        $statement =$this->connection->prepare("UPDATE albums SET ".$args['column']." = ? WHERE id =?;");
+        $statement->execute(array($args['data'],$args['id']));
     }
     public function delete($id): void
     {

@@ -44,8 +44,8 @@ class SongController
         }
         $this->songRepository->add($song);
     }
-    public function updateSong(Song $song){
-        $this->songRepository->Update($song);
+    public function updateSong($args){
+        $this->songRepository->Update($args);
     }
     public function deleteSong(Song $song){
         $this->songRepository->delete($song);
@@ -54,7 +54,7 @@ class SongController
     public function getSongById($id){
         //var_dump($id['id']);
         $song=$this->songRepository->findById($id['id']);
-        var_dump($song);
+        //var_dump($song);
         include_once APP_ROOT.'/public/index.php';
     }
 

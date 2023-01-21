@@ -35,9 +35,10 @@ class ArtistRepositoryImpl implements Repository
         return $lastIdInserted;
     }
 
-    public function Update($artist): void
+    public function Update($args): void
     {
-
+        $statement =$this->connection->prepare("UPDATE artists SET ".$args['column']." = ? WHERE id =?;");
+        $statement->execute(array($args['data'],$args['id']));
     }
 
     public function delete($id): void

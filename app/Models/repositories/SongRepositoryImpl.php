@@ -31,7 +31,8 @@ class SongRepositoryImpl implements Repository
 
     public function Update($args): void
     {
-        // TODO: Implement Update() method.
+        $statement =$this->connection->prepare("UPDATE songs SET ".$args['column']." = ? WHERE id =?;");
+        $statement->execute(array($args['data'],$args['id']));
     }
 
     public function delete($args): void
@@ -48,8 +49,9 @@ class SongRepositoryImpl implements Repository
 
     public function findAll(): array
     {
-        return  array();
-        // TODO: Implement findAll() method.
+        $statement =$this->connection->prepare("Select songs.*,art.prenom as artist , art.image as artist_image , albums.title as album from songs inner join artists as art on songs.artist_id=art.id inner join albums on songs.album_id = albums.id");
+        $statement->execute();
+        return $statement->fetchAll();
     }
 
     public function countAll(): int

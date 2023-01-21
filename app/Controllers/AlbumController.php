@@ -6,6 +6,7 @@ use App\Models\Album;
 use App\Models\repositories\AlbumRepositoryImpl;
 use App\Models\repositories\SongRepositoryImpl;
 use App\Models\Song;
+use function var_dump;
 
 class AlbumController
 {
@@ -19,9 +20,8 @@ class AlbumController
     /*
    *       Manage Albums
    * */
-
     public function addAlbum(Album $album){
-        $this->albumRepository->add($album);
+        var_dump($this->albumRepository->add($album));
     }
     public function updateAlbum(Album $album){
         $this->albumRepository->Update($album);
