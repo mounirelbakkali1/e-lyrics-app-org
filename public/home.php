@@ -165,11 +165,11 @@
                             <div class="card-body">
                                 <div class="d-flex justify-content-between px-md-1">
                                     <div>
-                                        <h3 class="text-info"><?php echo count($albums) ?></h3>
+                                        <h3 class="text-secondary"><?php echo count($albums) ?></h3>
                                         <p class="mb-0">Album</p>
                                     </div>
                                     <div class="align-self-center">
-                                        <i class="fas fa-book-open text-info fa-3x"></i>
+                                        <i class="fas fa-book-open text-secondary fa-3x"></i>
                                     </div>
                                 </div>
                             </div>
@@ -233,15 +233,15 @@
 //
 ////var_dump($repo1->findAllUsers());
 //$adminCtr  = new \App\Controllers\AdminController();
-//
+////
 //$newUser = new \App\Models\Admin();
 //$newUser->setNom("el bakkali");
-//$newUser->setUsername("mounirelbakkali2024");
+//$newUser->setUsername("mounir@gmail.com");
 //$newUser->setPrenom("mounir");
 //$newUser->setPassword("12345");
-//$newUser->setRole(\App\Models\rule::USER);
+//$newUser->setRole(\App\Models\rule::ADMIN);
 //
-////$adminCtr->addUser($newUser);
+//$adminCtr->addUser($newUser);
 //
 //$albumRepo = new \App\Models\repositories\AlbumRepositoryImpl();
 //

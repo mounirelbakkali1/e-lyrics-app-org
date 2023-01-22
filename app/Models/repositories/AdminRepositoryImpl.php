@@ -69,9 +69,9 @@ class AdminRepositoryImpl extends SongRepositoryImpl implements Repository
         $statement->execute();
         return $statement->fetch();
     }
-    public function authenticate($person){
+    public function authenticate($username){
         $statement = $this->connexion->prepare("select * from users where username = ? ");
-        if($statement->execute(array($person->getUsername()))){
+        if($statement->execute(array($username))){
             $resultSet=$statement->fetchAll();
             return $resultSet;
         }

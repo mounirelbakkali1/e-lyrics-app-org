@@ -56,20 +56,18 @@ class AdminController
 
 
 
-    public static function authenticate($user, $crfToken){
+    public static function authenticate($username,$pwd, $crfToken){
         // generate feedback depend
         $feedBack=array();
         $feedBack['authenticat']= false;
-        if($user instanceof  Person){
-            $resultSet =(new self)->repository->authenticate($user);
-            if(count($resultSet)<=0)$feedBack['message']="username is not part of our records";
-            else{
-                if(!password_verify($user->getPassword(),$resultSet[0]['password'])) $feedBack['message']="incorrect password";
-                else {
-                    // TODO: Here need to add srfToken verification
-                    $feedBack['message']="authentication succeful";
-                    $feedBack['authenticat']=true;
-                }
+        $resultSet =(new self)->repository->authenticate($username);
+        if(count($resultSet)<=0)$feedBack['message']="username is not part of our records";
+        else{
+            if(!password_verify($pwd,$resultSet[0]['password'])) $feedBack['message']="incorrect password";
+            else {
+                // TODO: Here need to add srfToken verification
+                $feedBack['message']="authentication succeful";
+                $feedBack['authenticat']=true;
             }
         }
         return $feedBack;
