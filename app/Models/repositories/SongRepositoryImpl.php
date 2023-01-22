@@ -35,9 +35,10 @@ class SongRepositoryImpl implements Repository
         $statement->execute(array($args['data'],$args['id']));
     }
 
-    public function delete($args): void
+    public function delete($id): void
     {
-        // TODO: Implement delete() method.
+        $statement =$this->connection->prepare("DELETE FROM songs WHERE id =?;");
+        $statement->execute(array($id));
     }
 
     public function findById($args)

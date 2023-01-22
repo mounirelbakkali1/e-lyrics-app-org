@@ -47,8 +47,8 @@ class SongController
     public function updateSong($args){
         $this->songRepository->Update($args);
     }
-    public function deleteSong(Song $song){
-        $this->songRepository->delete($song);
+    public function deleteSong($id){
+        $this->songRepository->delete($id);
     }
 
     public function getSongById($id){

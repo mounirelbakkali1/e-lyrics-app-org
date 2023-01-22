@@ -132,7 +132,9 @@
                                         <i class="fas fa-music text-info fa-3x"></i>
                                     </div>
                                     <div class="text-end">
-                                        <h3>278</h3>
+                                        <h3>
+                                            <?php echo count($songs) ?>
+                                        </h3>
                                         <p class="mb-0">Music</p>
                                     </div>
                                 </div>
@@ -146,7 +148,7 @@
                             <div class="card-body">
                                 <div class="d-flex justify-content-between px-md-1">
                                     <div>
-                                        <h3 class="text-success">156</h3>
+                                        <h3 class="text-success"><?php echo count($artists) ?></h3>
                                         <p class="mb-0">Artists</p>
                                     </div>
                                     <div class="align-self-center">
@@ -163,7 +165,7 @@
                             <div class="card-body">
                                 <div class="d-flex justify-content-between px-md-1">
                                     <div>
-                                        <h3 class="text-info">278</h3>
+                                        <h3 class="text-info"><?php echo count($albums) ?></h3>
                                         <p class="mb-0">Album</p>
                                     </div>
                                     <div class="align-self-center">
@@ -192,6 +194,9 @@
     <script type="text/javascript" src="assets/js/mdb.min.js"></script>
     <!-- Custom scripts -->
     <script type="text/javascript" src="assets/js/admin.js"></script>
+
+    <!--SWEET aLERT-->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-------BS--->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

@@ -37,7 +37,7 @@ class ArtistRepositoryImpl implements Repository
 
     public function Update($args): void
     {
-        $statement =$this->connection->prepare("UPDATE artists SET ".$args['column']." = ? WHERE id =?;");
+        $statement =$this->connexion->prepare("UPDATE artists SET ".$args['column']." = ? WHERE id =?;");
         $statement->execute(array($args['data'],$args['id']));
     }
 
@@ -54,11 +54,9 @@ class ArtistRepositoryImpl implements Repository
 
     public function findAll(): array
     {
-        $artist = new Artist();
-        $artist->setNom("Mounir");
-        $artist2 = new Artist();
-        $artist2->setNom("Ahmed");
-        return [$artist,$artist2];
+        $statement =$this->connexion->prepare("SELECT * FROM artists ;");
+        $statement->execute();
+        return $statement->fetchAll();
     }
 
     public function countAll(): int
