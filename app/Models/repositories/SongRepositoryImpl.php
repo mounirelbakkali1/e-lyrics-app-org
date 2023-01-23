@@ -22,7 +22,7 @@ class SongRepositoryImpl implements Repository
     {
         $this->connection->beginTransaction();
         if($args instanceof Song){
-            $statement =$this->connection->prepare("INSERT INTO `songs`(`ID`, `title`, `artist_id`, `album_id`, `lyric`, `annee_de_creation`, `image`) VALUES (null,?,?,?,?,?,?) ");
+            $statement =$this->connection->prepare("INSERT INTO `songs`(`ID`, `title`, `artist_id`, `album_id`, `lyric`, `anneeDeCreation`, `image`) VALUES (null,?,?,?,?,?,?) ");
             $statement->execute(array($args->getTitle(),$args->getArtist()->getId(),$args->getAlbum()->getId(),$args->getLyric(),$args->getAnneDeCreation(),$args->getSongImage()));
         }else throw new \InvalidArgumentException("Opps ! obejct passed is not an instance of Album.");
         $this->connection->commit();
@@ -50,7 +50,7 @@ class SongRepositoryImpl implements Repository
 
     public function findAll(): array
     {
-        $statement =$this->connection->prepare("Select songs.*,art.prenom as artist , art.image as artist_image , albums.title as album from songs inner join artists as art on songs.artist_id=art.id inner join albums on songs.album_id = albums.id");
+        $statement =$this->connection->prepare("Select songs.*,art.prenom as artist , art.image as artist_image , albums.title as album ,albums.image as album_image from songs inner join artists as art on songs.artist_id=art.id inner join albums on songs.album_id = albums.id");
         $statement->execute();
         return $statement->fetchAll();
     }
@@ -58,6 +58,5 @@ class SongRepositoryImpl implements Repository
     public function countAll(): int
     {
         return 0 ;
-        // TODO: Implement countAll() method.
     }
 }

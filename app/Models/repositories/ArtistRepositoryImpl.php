@@ -23,16 +23,13 @@ class ArtistRepositoryImpl implements Repository
         $this->connexion->beginTransaction();
         $lastIdInserted;
         try {
-            if($artist instanceof Artist){
                 $statement =$this->connexion->prepare("INSERT INTO `artists`( `nom`, `prenom`, `biography`, `image`) VALUES (?,?,?,?)");
                 $statement->execute(array($artist->getLastName(),$artist->getFirstName(),$artist->getBiography(),$artist->getImage()));
-                $lastIdInserted= $this->connexion->lastInsertId();
-            }else throw new \InvalidArgumentException("Opps ! obejct passed is not an instance of an Artist.");
-            $this->connexion->commit();
+                $this->connexion->commit();
         }catch (PDOException $PDOException) {
             $this->connexion->rollBack();
         }
-        return $lastIdInserted;
+        return $this->connexion->lastInsertId();
     }
 
     public function Update($args): void

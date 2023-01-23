@@ -69,20 +69,12 @@
                     <div style="height: 30px !important;">
                         <img src="uploads/images/logo2.png" height="35" alt="" loading="lazy" />
                     </div>
-                   <i class="logo text-light font-weight-lighter"> E-Lyrics</i>
+                   <i class="logo text-light font-weight-lighter" style="font-family: cursive;"> E-Lyrics</i>
                 </a>
 
 
                 <!-- Right links -->
-                <ul class="navbar-nav ms-auto d-flex flex-row">
-                    <li class="me-3">
-                        <!-- Search form -->
-                        <form class="d-none d-md-flex input-group w-auto my-auto">
-                            <input autocomplete="off" type="search" class="form-control rounded"
-                                   placeholder='Search for a song' style="min-width: 225px" />
-                            <span class="input-group-text border-0"><i class="fas fa-search"></i></span>
-                        </form>
-                    </li>
+                <ul class="navbar-nav ms-auto d-flex flex-row align-items-center">
                     <!-- Notification dropdown -->
                     <li class="nav-item dropdown">
                         <a class="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink"
@@ -102,12 +94,12 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center" href="#"
                            id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                            <img src="https://mdbootstrap.com/img/Photos/Avatars/img (31).jpg" class="rounded-circle" height="22"
-                                 alt="" loading="lazy" />
+                            <p class="text-light me-2 m-0" style="font-family: cursive;"><?= $_SESSION['user']['username']?></p>
+                            <?= "<img src = 'data:image/png;base64," . base64_encode($_SESSION['user']['image']) . "' width = '35px' height = '35px'/>"?>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
                             <li><a class="dropdown-item" href="#">My profile</a></li>
-                            <li><a class="dropdown-item" href="#">Logout</a></li>
+                            <li><a class="dropdown-item" href="/logout">Logout</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -123,6 +115,7 @@
         <div class="container pt-4">
             <!--Section: Minimal statistics cards-->
             <section>
+
                 <div class="row">
                     <div class="col-xl-3 col-sm-6 col-12 mb-4">
                         <div class="card text-light">

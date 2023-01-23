@@ -66,8 +66,10 @@ class AdminController
             if(!password_verify($pwd,$resultSet[0]['password'])) $feedBack['message']="incorrect password";
             else {
                 // TODO: Here need to add srfToken verification
+
                 $feedBack['message']="authentication succeful";
                 $feedBack['authenticat']=true;
+                $feedBack['user']=$resultSet;
             }
         }
         return $feedBack;

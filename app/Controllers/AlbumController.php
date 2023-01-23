@@ -21,7 +21,7 @@ class AlbumController
    *       Manage Albums
    * */
     public function addAlbum(Album $album){
-        var_dump($this->albumRepository->add($album));
+        return $this->albumRepository->add($album);
     }
     public function updateAlbum(Album $album){
         $this->albumRepository->Update($album);
