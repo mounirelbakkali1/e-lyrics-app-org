@@ -95,7 +95,7 @@
                         <a class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center" href="#"
                            id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
                             <p class="text-light me-2 m-0" style="font-family: cursive;"><?= $_SESSION['user']['username']?></p>
-                            <?= "<img src = 'data:image/png;base64," . base64_encode($_SESSION['user']['image']) . "' width = '35px' height = '35px'/>"?>
+                            <?= "<img src = 'data:image/png;base64, " . base64_encode($_SESSION['user']['image']) . "' width = '35px' height = '35px'/>"?>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
                             <li><a class="dropdown-item" href="#">My profile</a></li>
@@ -171,14 +171,18 @@
                 </div>
             </section>
             <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="dashboard" role="tabpanel" aria-labelledby="list-home-list">
+                <div class="tab-pane fade show active text-light" id="dashboard" role="tabpanel" aria-labelledby="list-home-list">
                     <?php include_once "../views/music.php"?>
                 </div>
                 <div class="tab-pane fade" id="music" role="tabpanel" aria-labelledby="list-profile-list">
-
+                    <?php include_once "../views/music.php"?>
                 </div>
-                <div class="tab-pane fade" id="artists" role="tabpanel" aria-labelledby="list-messages-list">C</div>
-                <div class="tab-pane fade" id="albums" role="tabpanel" aria-labelledby="list-settings-list">D</div>
+                <div class="tab-pane fade" id="artists" role="tabpanel" aria-labelledby="list-messages-list">
+                    <?php include_once "../views/artists.php"?>
+                </div>
+                <div class="tab-pane fade" id="albums" role="tabpanel" aria-labelledby="list-settings-list">
+                    <?php include_once "../views/albums.php"?>
+                </div>
             </div>
         </div>
     </main>
@@ -229,13 +233,13 @@
 ////
 //$newUser = new \App\Models\Admin();
 //$newUser->setNom("el bakkali");
-//$newUser->setUsername("mounir@gmail.com");
+//$newUser->setUsername("user@gmail.com");
 //$newUser->setPrenom("mounir");
 //$newUser->setPassword("12345");
-//$newUser->setRole(\App\Models\rule::ADMIN);
+//$newUser->setRole(\App\Models\rule::USER);
 //
 //$adminCtr->addUser($newUser);
-//
+
 //$albumRepo = new \App\Models\repositories\AlbumRepositoryImpl();
 //
 //
